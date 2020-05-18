@@ -17,7 +17,13 @@ export default function App() {
 
   useEffect(() => {
     
-    fetchShow(setShow,setSeasons,formatSeasons);
+    fetchShow()
+    .then(res => {
+      
+      setShow(res.data);
+      setSeasons(formatSeasons(res.data._embedded.episodes));
+    })
+    
   }, []);
 
   const handleSelect = e => {
