@@ -19,7 +19,7 @@ jest.mock('./api/fetchShow')
 test('tes to see if app renders', async ()=>{
     fetchShow.mockResolvedValueOnce(data)
 
-    const {getByText} = render(<App />)
+    const {getByText,getAllByText} = render(<App />)
 
     await waitFor( ()=>{
     const getSeason =  getByText(/select a season/i)
@@ -30,5 +30,5 @@ test('tes to see if app renders', async ()=>{
       
     } )
     userEvent.click(getByText(/select a season/i))
-    expect()
+    expect(getAllByText(/season /i)).toHaveLength(4)
 } )
